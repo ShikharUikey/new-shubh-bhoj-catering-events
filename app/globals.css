@@ -24,3 +24,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+:root {
+  --maroon: #5a001a;
+  --gold: #d4af37;
+  --cream: #fff8f0;
+}
+
+body {
+  background: var(--cream);
+  color: #222;
+}
