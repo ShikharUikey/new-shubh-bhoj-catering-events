@@ -6,7 +6,7 @@ import WhyChooseUs from "./components/WhyChooseUs";
 import CTASection from "./components/CTASection";
 import GalleryPreview from "./components/GalleryPreview";
 import Testimonials from "./components/Testimonials";
-import Footer from "./components/Footer.tsx";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
