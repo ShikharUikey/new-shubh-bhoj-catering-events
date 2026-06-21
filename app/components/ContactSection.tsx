@@ -28,7 +28,7 @@ export default function ContactSection() {
                   📞 Call Us
                 </h3>
                 <p className="text-gray-600">
-                  +91 XXXXX XXXXX
+                  +91 62631 26954
                 </p>
               </div>
 
@@ -46,7 +46,7 @@ export default function ContactSection() {
                   📍 Location
                 </h3>
                 <p className="text-gray-600">
-                  Madhya Pradesh, India
+                  Delhi NCR, India
                 </p>
               </div>
 

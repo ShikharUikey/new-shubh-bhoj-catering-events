@@ -1,15 +1,15 @@
 export default function Testimonials() {
   const testimonials = [
     {
-      name: "Wedding Client",
+      name: "Amit Sharma",
       text: "The food quality and presentation exceeded our expectations. Every guest was impressed.",
     },
     {
-      name: "Corporate Event Client",
+      name: "Priya veshnav",
       text: "Professional service, timely execution, and excellent menu selection.",
     },
     {
-      name: "Family Celebration Client",
+      name: "Sateesh Gupta",
       text: "From planning to execution, everything was seamless and memorable.",
     },
   ];

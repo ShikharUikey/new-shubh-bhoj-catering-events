@@ -1,10 +1,28 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#2b000c] via-[#5a001a] to-[#87002b]">
+    <section className="relative overflow-hidden min-h-screen">
 
-      <div className="max-w-7xl mx-auto px-6 min-h-[90vh] flex items-center">
+  {/* Background Image */}
+  <div className="absolute inset-0">
+    <Image
+      src="/gallery-5.jpg"
+      alt="Luxury Banquet Hall"
+      fill
+      priority
+      className="object-cover"
+    />
+  </div>
+
+  {/* Dark Maroon Overlay */}
+  <div className="absolute inset-0 bg-[#5A001A]/40" />
+
+  {/* Extra Luxury Gradient */}
+  <div className="absolute inset-0 bg-gradient-to-br from-[#2b000c]/40 via-transparent to-[#87002b]/40" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-[90vh] flex items-center">
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
@@ -49,12 +67,22 @@ export default function Hero() {
   </p>
 </div>
 
+<div className="mb-6">
+  <div className="text-[#D4AF37] tracking-[10px] uppercase text-sm">
+    शुद्ध स्वाद • उत्तम सेवा • अविस्मरणीय अनुभव
+  </div>
+
+  <div className="w-28 h-[2px] bg-[#D4AF37] mt-5" />
+</div>
+
             {/* Main Heading */}
 
-            <h1 className="text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6">
-  <span className="text-white">हर आयोजन को</span>
+            <h1 className="text-white text-4xl lg:text-7xl font-serif leading-[1.05] mb-8">
+  A Perfect Blend of
   <br />
-  <span className="text-yellow-300">बनाएं यादगार</span>
+  <span className="text-[#F6E7C1]">
+    Taste • Tradition • Togetherness
+  </span>
 </h1>
 
             {/* Sub Heading */}
@@ -65,28 +93,33 @@ export default function Hero() {
 
             {/* Description */}
 
-            <p className="text-gray-200 text-lg leading-relaxed max-w-xl mb-10">
-  From weddings and receptions to corporate events and family celebrations,
-  Shubh Bhoj delivers memorable catering experiences with authentic flavors,
-  elegant presentation, and exceptional hospitality.
+            <p className="text-gray-200 text-xl leading-relaxed max-w-3xl mb-10">
+  From intimate family functions and Vedic sangeets to grand
+  corporate galas and destination weddings, we craft premium
+  catering experiences that blend authentic flavors, elegant
+  presentation, and exceptional hospitality.
 </p>
 
             {/* Buttons */}
 
             <div className="flex flex-wrap gap-4">
 
-              <button className="bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-4 rounded-full font-semibold transition">
-                Get Royal Quote
-              </button>
+  <Link
+    href="/contact"
+    className="bg-[#D4AF37] text-[#5A001A] px-8 py-4 rounded-full font-semibold hover:scale-105 transition"
+  >
+    Get Royal Quote
+  </Link>
 
-              <button className="border border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-black transition">
-                View Services
-              </button>
+  <Link
+    href="/services"
+    className="border border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#5A001A] transition"
+  >
+    View Services
+  </Link>
 
-            </div>
-
-          </div>
-
+</div>
+</div>
           {/* RIGHT CONTENT */}
 
           <div className="flex justify-center">
@@ -106,7 +139,7 @@ export default function Hero() {
               </h3>
 
               <p className="text-yellow-300 uppercase tracking-[4px] mt-2 text-sm">
-  Founder
+  Founder & Managing Director
 </p>
 
             </div>
@@ -116,7 +149,15 @@ export default function Hero() {
         </div>
 
       </div>
+<div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+  <p className="text-white/70 text-xs tracking-[4px] mb-2">
+    SCROLL TO DISCOVER
+  </p>
 
+  <div className="w-6 h-10 border border-[#D4AF37] rounded-full mx-auto flex justify-center">
+    <div className="w-1 h-2 bg-[#D4AF37] rounded-full mt-2 animate-bounce" />
+  </div>
+</div>
     </section>
   );
 }

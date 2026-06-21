@@ -61,7 +61,7 @@ export default function Navbar() {
         {/* Book Now */}
 
         <a
-          href="https://wa.me/916263126954?text=Hello%20I%20want%20to%20book%20an%20event"
+          href="/contact"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#5a001a] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#730021] transition duration-300 shadow-md"

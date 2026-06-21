@@ -11,18 +11,28 @@ export default function AboutSection() {
           {/* Left Side */}
 
           <div className="flex justify-center">
+          <div className="bg-white p-4 rounded-3xl shadow-xl text-center">
 
-            <div className="bg-white p-4 rounded-3xl shadow-xl">
-
-              <Image
-                src="/Founder.jpg"
-                alt="Sarvesh Kumar"
-                width={450}
-                height={550}
-                className="rounded-2xl object-cover"
+           <Image
+           src="/Founder.jpg"
+             alt="Sarvesh Kumar"
+           width={450}
+           height={550}
+              className="rounded-2xl object-cover"
               />
 
-            </div>
+            <div className="mt-6">
+             <h3 className="text-3xl font-bold text-[#5A001A]">
+              Sarvesh Kumar
+             </h3>
+
+                 <p className="uppercase tracking-[6px] text-[#D4AF37] text-sm mt-3">
+                   Founder & Managing Director
+                  </p>
+           </div>
+
+           </div>
+
 
           </div>
 
@@ -55,7 +65,7 @@ export default function AboutSection() {
               <div className="bg-white rounded-2xl shadow-md p-5 text-center">
 
                 <h3 className="text-3xl font-bold text-[#5a001a]">
-                  20+
+                  850+
                 </h3>
 
                 <p className="text-gray-600 text-sm mt-2">
@@ -79,7 +89,7 @@ export default function AboutSection() {
               <div className="bg-white rounded-2xl shadow-md p-5 text-center">
 
                 <h3 className="text-3xl font-bold text-[#5a001a]">
-                  100+
+                  1000+
                 </h3>
 
                 <p className="text-gray-600 text-sm mt-2">
@@ -91,10 +101,10 @@ export default function AboutSection() {
             </div>
 
             <a
-              href="/about"
+              href="/contact"
               className="inline-block bg-[#5a001a] text-white px-8 py-4 rounded-full hover:opacity-90 transition"
             >
-              Learn More About Us
+              Get Royal Quote
             </a>
 
           </div>
