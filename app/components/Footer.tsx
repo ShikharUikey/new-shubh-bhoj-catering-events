@@ -51,7 +51,7 @@ export default function Footer() {
             </h4>
 
             <ul className="space-y-3 text-gray-300">
-              <li>📞 +91 XXXXX XXXXX</li>
+              <li>📞 +91 62631 26954</li>
               <li>✉️ info@shubhbhoj.com</li>
               <li>📍 Delhi NCR, India</li>
             </ul>
