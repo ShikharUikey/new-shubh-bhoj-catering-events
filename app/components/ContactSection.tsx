@@ -1,4 +1,40 @@
+"use client";
+
+import { useState } from "react";
 export default function ContactSection() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("/api/leads", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        phone,
+        message,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Lead submitted successfully!");
+      setName("");
+      setPhone("");
+      setMessage("");
+    }
+  } catch (error) {
+    alert("Failed to submit lead");
+  }
+};
   return (
     <section className="py-24 bg-[#F8F5F1]">
       <div className="max-w-7xl mx-auto px-6">
@@ -69,24 +105,30 @@ export default function ContactSection() {
               Request A Quote
             </h3>
 
-            <form className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5">
 
               <input
                 type="text"
                 placeholder="Full Name"
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
 
               <input
                 type="tel"
                 placeholder="Phone Number"
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
 
               <input
                 type="email"
                 placeholder="Email Address"
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <select className="w-full border border-gray-300 rounded-xl px-4 py-3">
@@ -110,10 +152,12 @@ export default function ContactSection() {
   </label>
 
   <textarea
-    placeholder="Enter Complete Venue Address"
-    rows={3}
-    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#7A0026]"
-  />
+  rows={5}
+  placeholder="Tell us about your event..."
+  value={message}
+  onChange={(e) => setMessage(e.target.value)}
+  className="w-full border border-gray-300 rounded-xl px-4 py-3"
+/>
 </div>
               <input
                 type="date"
@@ -127,6 +171,7 @@ export default function ContactSection() {
               />
 
               <button
+              type="submit"
                 className="w-full bg-[#5A001A] hover:bg-[#720020] text-white py-4 rounded-xl font-semibold transition"
               >
                 Request Quote
