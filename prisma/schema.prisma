@@ -32,3 +32,17 @@ model EstimatorRequest {
   eventDate String
   createdAt DateTime @default(now())
 }
+
+model GalleryImage {
+  id        Int      @id @default(autoincrement())
+  imageUrl  String
+  createdAt DateTime @default(now())
+
+  }
+  model PricingPackage {
+  id          Int      @id @default(autoincrement())
+  title       String
+  price       String
+  description String
+  createdAt   DateTime @default(now())
+}

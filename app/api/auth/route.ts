@@ -1,10 +1,25 @@
-import { PrismaClient } from "@prisma/client";
+import  { primsa } from "@/lib/prisma"; 
 import bcrypt from "bcryptjs";
 
-const prisma = new PrismaClient();
+
 
 export async function GET() {
-  const hashedPassword = await bcrypt.hash("admin123", 10);
+  const existingAdmin = await prisma.admin.findUnique({
+    where: {
+      username: "admin",
+    },
+  });
+
+  if (existingAdmin) {
+    return Response.json({
+      message: "Admin already exists",
+    });
+  }
+
+  const hashedPassword = await bcrypt.hash(
+    "admin123",
+    10
+  );
 
   const admin = await prisma.admin.create({
     data: {

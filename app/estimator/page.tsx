@@ -20,6 +20,10 @@ export default function EstimatorPage() {
 
   const [liveCounter, setLiveCounter] = useState(false);
 
+  const [name, setName] = useState("");
+
+  const [phone, setPhone] = useState("");
+
   const pricing = {
   Wedding: {
     Royal: 1200,
@@ -58,7 +62,38 @@ export default function EstimatorPage() {
     totalEstimate += 25000;
 
   }
+const submitEstimator = async () => {
+  if (!name || !phone || !date) {
+    alert("Please fill all required fields");
+    return;
+  }
 
+  const res = await fetch("/api/estimator", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      phone,
+      eventType,
+      guests,
+      budget: totalEstimate.toString(),
+      eventDate: date,
+    }),
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    alert("Quote Request Submitted");
+
+    setName("");
+    setPhone("");
+  } else {
+    alert("Submission Failed");
+  }
+};
   return (
 
     <>
@@ -108,7 +143,37 @@ export default function EstimatorPage() {
                 Configure Your Dream Feast
 
               </h2>
+              {/* Name */}
 
+<div className="mb-6">
+  <label className="block font-semibold mb-2">
+    Full Name
+  </label>
+
+  <input
+    type="text"
+    value={name}
+    onChange={(e) => setName(e.target.value)}
+    placeholder="Enter your name"
+    className="w-full border rounded-xl p-3"
+  />
+</div>
+
+{/* Phone */}
+
+<div className="mb-6">
+  <label className="block font-semibold mb-2">
+    Phone Number
+  </label>
+
+  <input
+    type="tel"
+    value={phone}
+    onChange={(e) => setPhone(e.target.value)}
+    placeholder="Enter your phone number"
+    className="w-full border rounded-xl p-3"
+  />
+</div>
               {/* Event Type */}
 
               <div className="mb-6">
@@ -431,21 +496,12 @@ export default function EstimatorPage() {
 
               </div>
 
-              <a
-
-                href="https://wa.me/916263126954?text=Hello%20I%20would%20like%20a%20quotation%20for%20my%20event"
-
-                target="_blank"
-
-                rel="noopener noreferrer"
-
-                className="block text-center mt-10 bg-[#D4AF37] text-[#5A001A] font-bold py-4 rounded-xl"
-
-              >
-
-                Request Detailed Quote
-
-              </a>
+              <button
+  onClick={submitEstimator}
+  className="block w-full text-center mt-10 bg-[#D4AF37] text-[#5A001A] font-bold py-4 rounded-xl"
+>
+  Request Detailed Quote
+</button>
 
             </div>
 

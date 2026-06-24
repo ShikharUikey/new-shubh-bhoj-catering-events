@@ -3,13 +3,29 @@
 import { useEffect, useState } from "react";
 
 export default function LeadsPage() {
-  const [leads, setLeads] = useState([]);
+  const [leads, setLeads] = useState<any[]>([]);
 
   useEffect(() => {
     fetch("/api/leads")
       .then((res) => res.json())
       .then((data) => setLeads(data));
   }, []);
+
+  const deleteLead = async (id: number) => {
+    const res = await fetch(`/api/leads/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      setLeads((prev) =>
+        prev.filter((lead) => lead.id !== id)
+      );
+
+      alert("Lead Deleted");
+    }
+  };
 
   return (
     <div className="p-8">
@@ -26,6 +42,7 @@ export default function LeadsPage() {
               <th className="border p-3">Phone</th>
               <th className="border p-3">Message</th>
               <th className="border p-3">Date</th>
+              <th className="border p-3">Action</th>
             </tr>
           </thead>
 
@@ -37,7 +54,26 @@ export default function LeadsPage() {
                 <td className="border p-3">{lead.phone}</td>
                 <td className="border p-3">{lead.message}</td>
                 <td className="border p-3">
-                  {new Date(lead.createdAt).toLocaleDateString()}
+                  {new Date(
+                    lead.createdAt
+                  ).toLocaleDateString()}
+                </td>
+
+                <td className="border p-3">
+                  <button
+                    onClick={() => {
+                      if (
+                        confirm(
+                          `Delete ${lead.name}?`
+                        )
+                      ) {
+                        deleteLead(lead.id);
+                      }
+                    }}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
