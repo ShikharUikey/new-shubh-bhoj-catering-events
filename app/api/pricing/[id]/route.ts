@@ -1,19 +1,15 @@
-import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { NextResponse } from "next/server";
 
 export async function DELETE(
-  request: Request,
+  _request: Request,
   context: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await context.params;
-    console.log("DELETE HIT");
-    console.log("ID:", id);
 
     await prisma.pricingPackage.delete({
-      where: {
-        id: Number(id),
-      },
+      where: { id: Number(id) },
     });
 
     return NextResponse.json({
@@ -21,13 +17,10 @@ export async function DELETE(
       message: "Package deleted successfully",
     });
   } catch (error) {
-    console.error("DELETE ERROR:", error);
+    console.error("PRICING DELETE ERROR:", error);
 
     return NextResponse.json(
-      {
-        success: false,
-        error,
-      },
+      { success: false, error: String(error) },
       { status: 500 }
     );
   }

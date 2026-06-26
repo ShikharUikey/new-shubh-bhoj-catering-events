@@ -2,16 +2,30 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  _request: Request,
+  context: { params: Promise<{ id: string }> }
 ) {
-  await prisma.galleryImage.delete({
-    where: {
-      id: Number(params.id),
-    },
-  });
+  try {
+    const { id } = await context.params;
 
-  return NextResponse.json({
-    success: true,
-  });
+    await prisma.galleryImage.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+    });
+  } catch (error) {
+    console.error("GALLERY DELETE ERROR:", error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        error: String(error),
+      },
+      { status: 500 }
+    );
+  }
 }

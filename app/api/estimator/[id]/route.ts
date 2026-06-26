@@ -1,17 +1,15 @@
-import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { NextResponse } from "next/server";
 
 export async function DELETE(
-  request: Request,
+  _request: Request,
   context: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await context.params;
 
     await prisma.estimatorRequest.delete({
-      where: {
-        id: Number(id),
-      },
+      where: { id: Number(id) },
     });
 
     return NextResponse.json({
@@ -19,12 +17,10 @@ export async function DELETE(
       message: "Estimator request deleted",
     });
   } catch (error) {
-    console.error(error);
+    console.error("ESTIMATOR DELETE ERROR:", error);
 
     return NextResponse.json(
-      {
-        success: false,
-      },
+      { success: false, error: String(error) },
       { status: 500 }
     );
   }

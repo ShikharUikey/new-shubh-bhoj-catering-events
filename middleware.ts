@@ -1,15 +1,13 @@
+
 import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(
-  request: NextRequest
-) {
+export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   if (path.startsWith("/admin")) {
-    const loggedIn =
-      request.cookies.get("adminLoggedIn");
+    const loggedIn = request.cookies.get("adminLoggedIn");
 
-    if (!loggedIn) {
+    if (!loggedIn || loggedIn.value !== "true") {
       return NextResponse.redirect(
         new URL("/login", request.url)
       );

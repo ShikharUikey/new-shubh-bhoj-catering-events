@@ -1,21 +1,28 @@
-import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { NextResponse } from "next/server";
 
 export async function GET() {
-  const requests = await prisma.estimatorRequest.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  try {
+    const requests = await prisma.estimatorRequest.findMany({
+      orderBy: { createdAt: "desc" },
+    });
 
-  return NextResponse.json(requests);
+    return NextResponse.json(requests);
+  } catch (error) {
+    console.error("ESTIMATOR GET ERROR:", error);
+
+    return NextResponse.json(
+      { success: false, message: "Failed to fetch estimator requests" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    await prisma.estimatorRequest.create({
+    const estimatorRequest = await prisma.estimatorRequest.create({
       data: {
         name: body.name,
         phone: body.phone,
@@ -28,14 +35,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
+      request: estimatorRequest,
     });
   } catch (error) {
-    console.error(error);
+    console.error("ESTIMATOR POST ERROR:", error);
 
     return NextResponse.json(
-      {
-        success: false,
-      },
+      { success: false, message: "Failed to create estimator request" },
       { status: 500 }
     );
   }

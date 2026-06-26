@@ -1,6 +1,22 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
+import { NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
+export async function GET() {
+  try {
+    const leads = await prisma.lead.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+
+    return NextResponse.json(leads);
+  } catch (error) {
+    console.error("LEADS GET ERROR:", error);
+
+    return NextResponse.json(
+      { success: false, message: "Failed to fetch leads" },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(request: Request) {
   try {
@@ -14,27 +30,13 @@ export async function POST(request: Request) {
       },
     });
 
-    return Response.json({
-      success: true,
-      lead,
-    });
+    return NextResponse.json({ success: true, lead });
   } catch (error) {
-    return Response.json(
-      {
-        success: false,
-        error: "Failed to create lead",
-      },
+    console.error("LEADS POST ERROR:", error);
+
+    return NextResponse.json(
+      { success: false, message: "Failed to create lead" },
       { status: 500 }
     );
   }
-}
-
-export async function GET() {
-  const leads = await prisma.lead.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-
-  return Response.json(leads);
 }
