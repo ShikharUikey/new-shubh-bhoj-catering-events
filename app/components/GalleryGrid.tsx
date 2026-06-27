@@ -158,7 +158,7 @@ export default function GalleryGrid() {
             className="absolute top-6 right-8 text-white text-5xl"
             onClick={() => setSelectedImage(null)}
           >
-            ×
+            
           </button>
 
           <div

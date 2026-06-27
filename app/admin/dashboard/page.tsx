@@ -14,18 +14,13 @@ export default function DashboardPage() {
   });
 
   useEffect(() => {
-    const isLoggedIn =
-      localStorage.getItem("adminLoggedIn");
-
-    if (!isLoggedIn) {
-      router.push("/admin/login");
-      return;
-    }
-
     fetch("/api/dashboard")
       .then((res) => res.json())
-      .then((data) => setStats(data));
-  }, [router]);
+      .then((data) => setStats(data))
+      .catch((err) => {
+        console.error("Dashboard fetch error:", err);
+      });
+  }, []);
 
   return (
     <div className="p-8">
@@ -44,17 +39,29 @@ export default function DashboardPage() {
             🌐 Visit Website
           </a>
 
-          <button
-            onClick={() => {
-              localStorage.removeItem(
-                "adminLoggedIn"
-              );
-              router.push("/admin/login");
-            }}
-            className="bg-red-600 text-white px-4 py-2 rounded-lg"
-          >
-            🚪 Logout
-          </button>
+           <button
+  onClick={async () => {
+    try {
+      const res = await fetch("/api/admin/logout", {
+        method: "POST",
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        window.location.href = "/admin/login";
+      } else {
+        alert("Logout failed.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    }
+  }}
+  className="bg-red-600 text-white px-4 py-2 rounded-lg"
+>
+  🚪 Logout
+</button>
         </div>
       </div>
 

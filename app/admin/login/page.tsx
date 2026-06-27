@@ -1,66 +1,76 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const router = useRouter();
-
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
+    try {
+      setLoading(true);
 
-    const data = await res.json();
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-    if (data.success) {
-  document.cookie =
-  "adminLoggedIn=true; path=/";
+      const data = await res.json();
 
-  alert("Login Successful");
+      if (!res.ok || !data.success) {
+        alert(data.message || "Login failed.");
+        return;
+      }
 
-  router.push("/admin/dashboard");
+      alert("Login Successful");
+
+      // Cookie has already been set by the API.
+      // Just navigate to the dashboard.
+      window.location.href = "/admin/dashboard";
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="w-96 border p-6 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-96 bg-white border rounded-lg shadow-lg p-6">
+        <h1 className="text-2xl font-bold mb-6 text-center">
           Admin Login
         </h1>
 
         <input
-          type="text"
-          placeholder="Username"
-          className="w-full border p-2 mb-3"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          type="email"
+          placeholder="Email"
+          className="w-full border p-2 rounded mb-3"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
-          className="w-full border p-2 mb-4"
+          className="w-full border p-2 rounded mb-4"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <button
           onClick={handleLogin}
-          className="w-full bg-black text-white p-2 rounded"
+          disabled={loading}
+          className="w-full bg-[#5A001A] text-white p-2 rounded hover:bg-[#730021] disabled:opacity-50"
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
       </div>
     </div>
