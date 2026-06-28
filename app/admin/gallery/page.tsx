@@ -179,7 +179,7 @@ export default function GalleryAdminPage() {
       if (!data.success) throw new Error("Delete failed");
 
       // Remove from local state immediately for instant UI feedback
-      setImages((prev) => prev.filter((img) => img.id !== id));
+      await fetchGallery();
     } catch (err) {
       console.error(err);
       alert("Failed to delete image. Please try again.");

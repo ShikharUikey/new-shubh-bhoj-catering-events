@@ -16,10 +16,7 @@ export default function LoginPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
@@ -31,8 +28,8 @@ export default function LoginPage() {
 
       alert("Login Successful");
 
-      // Cookie has already been set by the API.
-      // Just navigate to the dashboard.
+      // Hard navigation ensures the browser sends the fresh
+      // HttpOnly cookie on the next request — middleware reads it.
       window.location.href = "/admin/dashboard";
     } catch (error) {
       console.error(error);

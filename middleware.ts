@@ -4,39 +4,32 @@ import jwt from "jsonwebtoken";
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Public admin route
+  // Public route — always allow login page through
   if (pathname === "/admin/login") {
     return NextResponse.next();
   }
 
-  // Read auth cookie
+  // Read the HttpOnly auth cookie set by /api/admin/login
   const token = request.cookies.get("admin-token")?.value;
 
-  // No cookie → Login
+  // No token → redirect to login
   if (!token) {
-    return NextResponse.redirect(
-      new URL("/admin/login", request.url)
-    );
+    return NextResponse.redirect(new URL("/admin/login", request.url));
   }
 
   try {
-    // Verify JWT
+    // Valid token → allow through
     jwt.verify(token, process.env.JWT_SECRET!);
-
     return NextResponse.next();
-  } catch (error) {
-    console.error("JWT Verification Failed:", error);
-
+  } catch {
+    // Invalid or expired token → clear cookie and redirect to login
     const response = NextResponse.redirect(
       new URL("/admin/login", request.url)
     );
-
-    // Remove invalid cookie
     response.cookies.set("admin-token", "", {
       expires: new Date(0),
       path: "/",
     });
-
     return response;
   }
 }

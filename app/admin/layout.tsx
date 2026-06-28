@@ -38,6 +38,26 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 // ============================================================================
+// Shared logout handler — used by both the header button and any page-level
+// logout triggers. Calls the API so the HttpOnly cookie is deleted server-side,
+// then hard-navigates to login so the browser drops all in-memory state.
+// ============================================================================
+
+async function handleLogout() {
+  try {
+    const res = await fetch("/api/admin/logout", { method: "POST" });
+    const data = await res.json();
+    if (data.success) {
+      window.location.href = "/admin/login";
+    } else {
+      alert("Logout failed. Please try again.");
+    }
+  } catch {
+    alert("Something went wrong during logout.");
+  }
+}
+
+// ============================================================================
 // Sidebar Nav Item
 // ============================================================================
 
@@ -64,7 +84,6 @@ function SidebarNavItem({ item, isActive }: { item: NavItem; isActive: boolean }
       />
       <span className="truncate">{item.label}</span>
 
-      {/* Active indicator dot */}
       {isActive && (
         <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#5A001A] shrink-0" aria-hidden="true" />
       )}
@@ -99,10 +118,9 @@ function AdminSidebar({ pathname }: { pathname: string }) {
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-0.5" aria-label="Main navigation">
         {NAV_ITEMS.map((item) => {
-          // Exact match for dashboard root, prefix match for all others
           const isActive =
             item.href === "/admin"
-              ? pathname === "/admin"
+              ? pathname === "/admin" || pathname === "/admin/dashboard"
               : pathname.startsWith(item.href);
 
           return <SidebarNavItem key={item.href} item={item} isActive={isActive} />;
@@ -133,16 +151,11 @@ function AdminHeader() {
     >
       {/* Left: identity */}
       <div className="flex items-center gap-3">
-        {/*
-          Mobile hamburger placeholder — wire up a state toggle here
-          when implementing the mobile sidebar drawer.
-        */}
         <button
           className="md:hidden p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5A001A]"
           aria-label="Open sidebar menu"
           type="button"
         >
-          {/* Hamburger lines */}
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -154,14 +167,11 @@ function AdminHeader() {
         </div>
       </div>
 
-      {/* Right: actions
-          Future additions (notifications, search, theme toggle, profile avatar)
-          slot in here as flex siblings before the logout button.
-      */}
+      {/* Right: actions */}
       <div className="flex items-center gap-3">
-        {/* Logout — UI only, wire up auth provider here when ready */}
         <button
           type="button"
+          onClick={handleLogout}
           className="flex items-center gap-1.5 text-xs font-semibold text-red-600 border border-red-200 hover:border-red-400 hover:bg-red-50 px-3.5 py-2 rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
           aria-label="Log out"
         >
@@ -185,7 +195,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <AdminSidebar pathname={pathname} />
       <AdminHeader />
 
-      {/* Main content — offset by sidebar width and header height */}
       <main
         className="ml-[260px] mt-[60px] min-h-[calc(100vh-60px)] p-6 md:p-8"
         id="admin-main-content"
