@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function DashboardPage() {
-  const router = useRouter();
 
   const [stats, setStats] = useState({
     totalLeads: 0,
@@ -60,7 +59,7 @@ export default function DashboardPage() {
   }}
   className="bg-red-600 text-white px-4 py-2 rounded-lg"
 >
-  🚪 Logout
+  
 </button>
         </div>
       </div>
@@ -99,35 +98,70 @@ export default function DashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="flex flex-wrap gap-4 mb-10">
-        <a
-          href="/admin/leads"
-          className="border px-6 py-3 rounded-lg"
-        >
-          📋 Lead Management
-        </a>
+<div className="mb-10">
+  <h2 className="text-2xl font-bold mb-4">
+    🚀 Quick Actions
+  </h2>
 
-        <a
-          href="/admin/gallery"
-          className="border px-6 py-3 rounded-lg"
-        >
-          📷 Gallery
-        </a>
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
 
-        <a
-          href="/admin/pricing"
-          className="border px-6 py-3 rounded-lg"
-        >
-          📝 Pricing
-        </a>
+    <Link
+      href="/admin/leads"
+      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
+    >
+      <div className="text-3xl mb-2">📋</div>
+      <h3 className="font-semibold">Lead Management</h3>
+      <p className="text-sm text-gray-500 mt-1">
+        View Contact Leads
+      </p>
+    </Link>
 
-        <a
-          href="/admin/settings"
-          className="border px-6 py-3 rounded-lg"
-        >
-          🛠️ Settings
-        </a>
-      </div>
+    <Link
+      href="/admin/estimator-leads"
+      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
+    >
+      <div className="text-3xl mb-2">🧮</div>
+      <h3 className="font-semibold">Estimator Leads</h3>
+      <p className="text-sm text-gray-500 mt-1">
+        View Quote Requests
+      </p>
+    </Link>
+
+    <Link
+      href="/admin/gallery"
+      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
+    >
+      <div className="text-3xl mb-2">🖼️</div>
+      <h3 className="font-semibold">Gallery</h3>
+      <p className="text-sm text-gray-500 mt-1">
+        Manage Images
+      </p>
+    </Link>
+
+    <Link
+      href="/admin/pricing"
+      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
+    >
+      <div className="text-3xl mb-2">💰</div>
+      <h3 className="font-semibold">Pricing</h3>
+      <p className="text-sm text-gray-500 mt-1">
+        Update Packages
+      </p>
+    </Link>
+
+    <Link
+      href="/admin/settings"
+      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
+    >
+      <div className="text-3xl mb-2">⚙️</div>
+      <h3 className="font-semibold">Settings</h3>
+      <p className="text-sm text-gray-500 mt-1">
+        Website Settings
+      </p>
+    </Link>
+
+  </div>
+</div>
 
       {/* Recent Leads */}
       <div>

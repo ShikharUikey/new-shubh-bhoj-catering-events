@@ -15,11 +15,24 @@ model Admin {
 }
 
 model Lead {
-  id        Int      @id @default(autoincrement())
-  name      String
-  phone     String
-  message   String?
-  createdAt DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+
+  // Customer Details
+  name        String
+  phone       String
+  email       String?
+
+  // Event Details
+  eventType   String?
+  guests      Int?
+  eventDate   String?
+  location    String?
+  message     String?
+
+  // Lead Management
+  status      String   @default("New")
+
+  createdAt   DateTime @default(now())
 }
 
 model EstimatorRequest {

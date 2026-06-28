@@ -1,44 +1,63 @@
 "use client";
 
 import { useState } from "react";
+
 export default function ContactSection() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [eventType, setEventType] = useState("");
+  const [guests, setGuests] = useState("");
+  const [location, setLocation] = useState("");
+  const [eventDate, setEventDate] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const res = await fetch("/api/leads", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        phone,
-        message,
-      }),
-    });
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          eventType,
+          guests,
+          location,
+          eventDate,
+          message,
+        }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      alert("Lead submitted successfully!");
-      setName("");
-      setPhone("");
-      setMessage("");
+      if (data.success) {
+        alert("Lead submitted successfully!");
+
+        setName("");
+        setPhone("");
+        setEmail("");
+        setEventType("");
+        setGuests("");
+        setLocation("");
+        setEventDate("");
+        setMessage("");
+      } else {
+        alert(data.message || "Submission failed.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to submit lead.");
     }
-  } catch (error) {
-    alert("Failed to submit lead");
-  }
-};
+  };
+
   return (
     <section className="py-24 bg-[#F8F5F1]">
       <div className="max-w-7xl mx-auto px-6">
-
         <div className="grid lg:grid-cols-2 gap-16">
 
           {/* Left Side */}
@@ -131,8 +150,12 @@ export default function ContactSection() {
                 onChange={(e) => setEmail(e.target.value)}
               />
 
-              <select className="w-full border border-gray-300 rounded-xl px-4 py-3">
-                <option>Select Event Type</option>
+              <select
+                className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                value={eventType}
+                onChange={(e) => setEventType(e.target.value)}
+              >
+                <option value="">Select Event Type</option>
                 <option>Wedding</option>
                 <option>Corporate Event</option>
                 <option>Birthday Party</option>
@@ -145,33 +168,35 @@ export default function ContactSection() {
                 type="number"
                 placeholder="Expected Guests"
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                value={guests}
+                onChange={(e) => setGuests(e.target.value)}
               />
-<div>
-  <label className="block text-sm font-medium text-gray-700 mb-2">
-    Event Location
-  </label>
 
-  <textarea
-  rows={5}
-  placeholder="Tell us about your event..."
-  value={message}
-  onChange={(e) => setMessage(e.target.value)}
-  className="w-full border border-gray-300 rounded-xl px-4 py-3"
-/>
-</div>
+              <textarea
+                rows={3}
+                placeholder="Event Location"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+
               <input
                 type="date"
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                value={eventDate}
+                onChange={(e) => setEventDate(e.target.value)}
               />
 
               <textarea
                 rows={5}
-                placeholder="Tell us about your event..."
+                placeholder="Additional Details"
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               />
 
               <button
-              type="submit"
+                type="submit"
                 className="w-full bg-[#5A001A] hover:bg-[#720020] text-white py-4 rounded-xl font-semibold transition"
               >
                 Request Quote
@@ -182,7 +207,6 @@ export default function ContactSection() {
           </div>
 
         </div>
-
       </div>
     </section>
   );

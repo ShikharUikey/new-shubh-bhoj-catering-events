@@ -31,7 +31,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: "Dashboard",       href: "/admin",            icon: LayoutDashboard   },
   { label: "Leads",           href: "/admin/leads",      icon: Inbox             },
-  { label: "Estimator Leads", href: "/admin/estimator",  icon: Calculator        },
+  { label: "Estimator Leads", href: "/admin/estimator-leads", icon: Calculator },
   { label: "Gallery",         href: "/admin/gallery",    icon: Images            },
   { label: "Pricing",         href: "/admin/pricing",    icon: BadgeDollarSign   },
   { label: "Settings",        href: "/admin/settings",   icon: Settings          },

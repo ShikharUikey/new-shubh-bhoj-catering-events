@@ -4,7 +4,9 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const leads = await prisma.lead.findMany({
-      orderBy: { createdAt: "desc" },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     return NextResponse.json(leads);
@@ -12,8 +14,13 @@ export async function GET() {
     console.error("LEADS GET ERROR:", error);
 
     return NextResponse.json(
-      { success: false, message: "Failed to fetch leads" },
-      { status: 500 }
+      {
+        success: false,
+        message: "Failed to fetch leads",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }
@@ -26,17 +33,31 @@ export async function POST(request: Request) {
       data: {
         name: body.name,
         phone: body.phone,
+        email: body.email,
+        eventType: body.eventType,
+        guests: body.guests ? Number(body.guests) : null,
+        eventDate: body.eventDate,
+        location: body.location,
         message: body.message,
       },
     });
 
-    return NextResponse.json({ success: true, lead });
+    return NextResponse.json({
+      success: true,
+      lead,
+    });
+
   } catch (error) {
     console.error("LEADS POST ERROR:", error);
 
     return NextResponse.json(
-      { success: false, message: "Failed to create lead" },
-      { status: 500 }
+      {
+        success: false,
+        message: "Failed to create lead",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }
