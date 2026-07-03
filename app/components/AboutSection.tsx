@@ -6,35 +6,9 @@ export default function AboutSection() {
 
       <div className="max-w-7xl mx-auto px-6">
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-4xl mx-auto text-center">
 
-          {/* Left Side */}
-
-          <div className="flex justify-center">
-          <div className="bg-white p-4 rounded-3xl shadow-xl text-center">
-
-           <Image
-           src="/Founder.jpg"
-             alt="Sarvesh Kumar"
-           width={450}
-           height={550}
-              className="rounded-2xl object-cover"
-              />
-
-            <div className="mt-6">
-             <h3 className="text-3xl font-bold text-[#5A001A]">
-              Sarvesh Kumar
-             </h3>
-
-                 <p className="uppercase tracking-[6px] text-[#D4AF37] text-sm mt-3">
-                   Founder & Managing Director
-                  </p>
-           </div>
-
-           </div>
-
-
-          </div>
+          
 
           {/* Right Side */}
 

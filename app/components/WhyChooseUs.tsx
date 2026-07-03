@@ -43,7 +43,7 @@ export default function WhyChooseUs() {
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="text-center mb-16">
-          <p className="uppercase tracking-[6px] text-[#d4af37] font-semibold text-sm">
+          <p className="uppercase tracking-[9px] text-[#d4af37] font-semibold text-sm">
             Why Choose Shubh Bhoj
           </p>
 
@@ -53,7 +53,7 @@ export default function WhyChooseUs() {
             With Every Event
           </h2>
 
-          <p className="mt-6 text-gray-600 max-w-3xl mx-auto text-lg">
+          <p className="mt-6 text-gray-900 max-w-3xl mx-auto text-lg">
             From menu planning to flawless execution, we focus on every
             detail to deliver memorable catering experiences that exceed
             expectations.
@@ -74,7 +74,7 @@ export default function WhyChooseUs() {
                 {item.title}
               </h3>
 
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-900 leading-relaxed">
                 {item.description}
               </p>
             </div>
