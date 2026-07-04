@@ -12,10 +12,10 @@ export async function GET() {
       ]);
 
     return NextResponse.json({
-      totalLeads: leadsCount.rows[0].count,
-      totalGallery: galleryCount.rows[0].count,
-      totalEstimator: estimatorCount.rows[0].count,
-      recentLeads: recentLeads.rows,
+      totalLeads: Number(leadsCount.rows[0]?.count ?? 0),
+      totalGallery: Number(galleryCount.rows[0]?.count ?? 0),
+      totalEstimator: Number(estimatorCount.rows[0]?.count ?? 0),
+      recentLeads: recentLeads.rows ?? [],
     });
   } catch (error) {
     console.error("DASHBOARD GET ERROR:", error);
