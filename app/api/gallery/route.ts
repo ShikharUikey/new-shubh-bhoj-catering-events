@@ -1,16 +1,14 @@
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const images = await prisma.galleryImage.findMany({
-      orderBy: { createdAt: "desc" },
-    });
-
-    return NextResponse.json(images);
+    const result = await db.execute(
+      "SELECT * FROM GalleryImage ORDER BY createdAt DESC"
+    );
+    return NextResponse.json(result.rows);
   } catch (error) {
     console.error("GALLERY GET ERROR:", error);
-
     return NextResponse.json(
       { success: false, message: "Failed to fetch gallery images" },
       { status: 500 }
@@ -21,17 +19,15 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-
-    const image = await prisma.galleryImage.create({
-      data: { imageUrl: body.imageUrl },
+    await db.execute({
+      sql: "INSERT INTO GalleryImage (imageUrl) VALUES (?)",
+      args: [body.imageUrl],
     });
-
-    return NextResponse.json({ success: true, image });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error("GALLERY POST ERROR:", error);
-
     return NextResponse.json(
-      { success: false, message: "Failed to upload image" },
+      { success: false, message: "Failed to save image" },
       { status: 500 }
     );
   }

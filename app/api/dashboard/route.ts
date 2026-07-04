@@ -1,28 +1,24 @@
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const [totalLeads, totalGallery, totalEstimator, recentLeads] =
+    const [leadsCount, galleryCount, estimatorCount, recentLeads] =
       await Promise.all([
-        prisma.lead.count(),
-        prisma.galleryImage.count(),
-        prisma.estimatorRequest.count(),
-        prisma.lead.findMany({
-          orderBy: { createdAt: "desc" },
-          take: 5,
-        }),
+        db.execute("SELECT COUNT(*) as count FROM Lead"),
+        db.execute("SELECT COUNT(*) as count FROM GalleryImage"),
+        db.execute("SELECT COUNT(*) as count FROM EstimatorRequest"),
+        db.execute("SELECT * FROM Lead ORDER BY createdAt DESC LIMIT 5"),
       ]);
 
     return NextResponse.json({
-      totalLeads,
-      totalGallery,
-      totalEstimator,
-      recentLeads,
+      totalLeads: leadsCount.rows[0].count,
+      totalGallery: galleryCount.rows[0].count,
+      totalEstimator: estimatorCount.rows[0].count,
+      recentLeads: recentLeads.rows,
     });
   } catch (error) {
     console.error("DASHBOARD GET ERROR:", error);
-
     return NextResponse.json(
       { success: false, message: "Failed to fetch dashboard data" },
       { status: 500 }

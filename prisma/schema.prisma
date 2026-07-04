@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = env("TURSO_DATABASE_URL")
 }
 
 model Admin {
@@ -15,24 +15,17 @@ model Admin {
 }
 
 model Lead {
-  id          Int      @id @default(autoincrement())
-
-  // Customer Details
-  name        String
-  phone       String
-  email       String?
-
-  // Event Details
-  eventType   String?
-  guests      Int?
-  eventDate   String?
-  location    String?
-  message     String?
-
-  // Lead Management
-  status      String   @default("New")
-
-  createdAt   DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  email     String?
+  eventType String?
+  guests    Int?
+  eventDate String?
+  location  String?
+  message   String?
+  status    String   @default("New")
+  createdAt DateTime @default(now())
 }
 
 model EstimatorRequest {
