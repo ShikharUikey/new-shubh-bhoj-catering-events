@@ -26,13 +26,7 @@ export default function CTASection() {
 
           <div className="mt-10 flex flex-col md:flex-row justify-center gap-5">
 
-            <button className="bg-[#d4af37] text-black font-semibold px-8 py-4 rounded-full hover:scale-105 transition">
-              Get Royal Quote
-            </button>
-
-            <button className="border border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-[#5a001a] transition">
-              Call Us Today
-            </button>
+            
 
           </div>
 
