@@ -58,115 +58,143 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div>
-      {/* ── Page Header ── */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-2xl font-bold text-neutral-800">Dashboard</h1>
-          <p className="text-sm text-neutral-500 mt-1">
-            Overview of your website activity
-          </p>
+    <div className="min-h-screen bg-[#FAF7F2] text-[#2C2523] px-6 py-10 md:px-12 md:py-14 antialiased selection:bg-[#5A001A]/10">
+      <div className="max-w-7xl mx-auto space-y-16">
+        
+        {/* ── Page Header ── */}
+        <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-[#E1D7C6] pb-10">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#5A001A]" />
+              <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#C5A880]">
+                Internal Portal
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-normal text-[#2C2523] tracking-tight font-serif">
+              Dashboard
+            </h1>
+            <p className="text-sm md:text-base text-[#7A716E] font-medium">
+              Manage your catering business from one place.
+            </p>
+          </div>
+
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2.5 text-xs md:text-sm font-semibold text-[#5A001A] border-2 border-[#5A001A]/30 bg-white hover:bg-[#5A001A] hover:text-white px-7 py-3.5 rounded-full transition-all duration-300 shadow-[0_4px_10px_rgba(44,37,35,0.02)] hover:shadow-[0_12px_24px_rgba(90,0,26,0.15)] hover:-translate-y-0.5"
+          >
+            <Globe className="w-4 h-4 transition-transform duration-500 group-hover:rotate-12" strokeWidth={1.75} />
+            <span>Visit Website</span>
+          </a>
         </div>
 
-        <a
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-xs font-semibold text-neutral-600 border border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50 px-3.5 py-2 rounded-lg transition-all duration-200"
-        >
-          <Globe className="w-3.5 h-3.5" />
-          Visit Website
-        </a>
-      </div>
-
-      {/* ── Stat Cards ── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-        <StatCard
-          icon={Users}
-          label="Total Leads"
-          value={stats.totalLeads}
-          loading={loading}
-        />
-        <StatCard
-          icon={ImageIcon}
-          label="Gallery Images"
-          value={stats.totalGallery}
-          loading={loading}
-        />
-        <StatCard
-          icon={FileText}
-          label="Estimator Requests"
-          value={stats.totalEstimator}
-          loading={loading}
-        />
-      </div>
-
-      {/* ── Quick Actions ── */}
-      <div className="mb-10">
-        <h2 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-4">
-          Quick Actions
-        </h2>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {QUICK_ACTIONS.map((action) => {
-            const Icon = action.icon;
-            return (
-              <Link
-                key={action.href}
-                href={action.href}
-                className="bg-white rounded-2xl border border-neutral-100 p-5 text-center hover:border-[#5A001A]/30 hover:shadow-md transition-all duration-200 group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#5A001A]/5 group-hover:bg-[#5A001A]/10 flex items-center justify-center mx-auto mb-3 transition-colors">
-                  <Icon className="w-5 h-5 text-[#5A001A]" />
-                </div>
-                <h3 className="font-semibold text-sm text-neutral-800">
-                  {action.label}
-                </h3>
-                <p className="text-xs text-neutral-500 mt-1">{action.desc}</p>
-              </Link>
-            );
-          })}
+        {/* ── Stat Cards ── */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <StatCard
+            icon={Users}
+            label="Total Leads"
+            value={stats.totalLeads}
+            loading={loading}
+          />
+          <StatCard
+            icon={ImageIcon}
+            label="Gallery Images"
+            value={stats.totalGallery}
+            loading={loading}
+          />
+          <StatCard
+            icon={FileText}
+            label="Estimator Requests"
+            value={stats.totalEstimator}
+            loading={loading}
+          />
         </div>
-      </div>
 
-      {/* ── Recent Leads ── */}
-      <div>
-        <h2 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-4">
-          Recent Leads
-        </h2>
+        {/* ── Quick Actions ── */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 px-1">
+            <h2 className="text-xs font-bold text-[#C5A880] uppercase tracking-[0.25em] whitespace-nowrap">
+              Quick Actions
+            </h2>
+            <div className="w-full h-[1px] bg-[#E1D7C6]" />
+          </div>
 
-        <div className="bg-white rounded-2xl border border-neutral-100 overflow-hidden">
-          {loading ? (
-            <div className="text-center py-12 text-neutral-400 text-sm">
-              Loading...
-            </div>
-          ) : stats.recentLeads.length === 0 ? (
-            <div className="text-center py-12 text-neutral-400 text-sm">
-              No leads yet.
-            </div>
-          ) : (
-            stats.recentLeads.map((lead, index) => (
-              <div
-                key={lead.id}
-                className={[
-                  "px-5 py-4",
-                  index !== stats.recentLeads.length - 1 &&
-                    "border-b border-neutral-50",
-                ].join(" ")}
-              >
-                <p className="font-semibold text-sm text-neutral-800">
-                  {lead.name}
-                </p>
-                <p className="text-sm text-neutral-500 mt-0.5">{lead.phone}</p>
-                {lead.message && (
-                  <p className="text-xs text-neutral-400 mt-1">
-                    {lead.message}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {QUICK_ACTIONS.map((action) => {
+              const Icon = action.icon;
+              return (
+                <Link
+                  key={action.href}
+                  href={action.href}
+                  className="bg-white rounded-3xl border-2 border-[#E1D7C6] p-8 text-center shadow-[0_4px_12px_rgba(44,37,35,0.02)] hover:shadow-[0_20px_40px_-5px_rgba(90,0,26,0.08)] hover:border-[#5A001A]/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center justify-center"
+                >
+                  <div className="w-14 h-14 rounded-2xl bg-[#FAF7F2] border-2 border-[#E1D7C6] group-hover:bg-[#5A001A] group-hover:border-[#5A001A] flex items-center justify-center mb-5 transition-all duration-300">
+                    <Icon className="w-5 h-5 text-[#5A001A] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-bold text-sm md:text-base text-[#2C2523] tracking-tight group-hover:text-[#5A001A] transition-colors duration-300">
+                    {action.label}
+                  </h3>
+                  <p className="text-xs text-[#7A716E] mt-1.5 font-medium leading-relaxed max-w-[160px]">
+                    {action.desc}
                   </p>
-                )}
-              </div>
-            ))
-          )}
+                </Link>
+              );
+            })}
+          </div>
         </div>
+
+        {/* ── Recent Leads ── */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 px-1">
+            <h2 className="text-xs font-bold text-[#C5A880] uppercase tracking-[0.25em] whitespace-nowrap">
+              Recent Leads
+            </h2>
+            <div className="w-full h-[1px] bg-[#E1D7C6]" />
+          </div>
+
+          <div className="bg-white rounded-3xl border-2 border-[#E1D7C6] overflow-hidden shadow-[0_6px_20px_rgba(44,37,35,0.02)]">
+            {loading ? (
+              <div className="text-center py-24 text-[#7A716E] text-sm font-medium animate-pulse tracking-wide">
+                Retrieving updates from hospitality registry...
+              </div>
+            ) : stats.recentLeads.length === 0 ? (
+              <div className="text-center py-24 text-[#7A716E] text-sm font-medium tracking-wide">
+                No active records in the lead ledger.
+              </div>
+            ) : (
+              <div className="divide-y-2 divide-[#FAF7F2]">
+                {stats.recentLeads.map((lead) => (
+                  <div
+                    key={lead.id}
+                    className="p-6 md:p-8 hover:bg-[#FAF7F2]/60 transition-colors duration-300 group border-b border-[#E1D7C6]/40 last:border-0"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                      <div className="space-y-2">
+                        <p className="font-bold text-base md:text-xl text-[#2C2523] tracking-tight group-hover:text-[#5A001A] transition-colors duration-300">
+                          {lead.name}
+                        </p>
+                        <div className="inline-flex items-center gap-2 bg-[#FAF7F2] border border-[#E1D7C6] px-3 py-1 rounded-full text-xs text-[#7A716E] font-semibold tracking-wide shadow-sm">
+                          <span className="w-1 h-1 rounded-full bg-[#C5A880]" />
+                          {lead.phone}
+                        </div>
+                      </div>
+                      
+                      {lead.message && (
+                        <div className="relative bg-white border-2 border-[#E1D7C6] px-6 py-4 rounded-2xl max-w-xl w-full md:text-left shadow-sm group-hover:border-[#C5A880]/40 transition-colors duration-300 border-l-4 border-l-[#C5A880]">
+                          <p className="text-xs md:text-sm text-[#4E4340] italic leading-relaxed">
+                            "{lead.message}"
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
       </div>
     </div>
   );
@@ -186,20 +214,23 @@ function StatCard({
   loading: boolean;
 }) {
   return (
-    <div className="bg-white rounded-2xl border border-neutral-100 p-6">
-      <div className="flex items-center gap-3 mb-3">
-        <div className="w-9 h-9 rounded-lg bg-[#5A001A]/5 flex items-center justify-center">
-          <Icon className="w-4.5 h-4.5 text-[#5A001A]" />
+    <div className="bg-white rounded-3xl border-2 border-[#E1D7C6] p-8 shadow-[0_4px_12px_rgba(44,37,35,0.01)] hover:shadow-[0_20px_40px_-5px_rgba(90,0,26,0.08)] hover:border-[#5A001A]/40 hover:-translate-y-1 transition-all duration-300 group flex items-center justify-between overflow-hidden relative">
+      <div className="space-y-3 relative z-10">
+        <p className="text-xs font-bold text-[#7A716E] tracking-[0.15em] uppercase">
+          {label}
+        </p>
+        <div className="text-5xl md:text-6xl font-normal text-[#2C2523] tracking-tight font-serif">
+          {loading ? (
+            <span className="inline-block w-20 h-12 bg-[#FAF7F2] rounded-xl animate-pulse border border-[#E1D7C6]" />
+          ) : (
+            value.toLocaleString()
+          )}
         </div>
-        <p className="text-sm font-medium text-neutral-500">{label}</p>
       </div>
-      <p className="text-3xl font-bold text-neutral-800">
-        {loading ? (
-          <span className="inline-block w-12 h-8 bg-neutral-100 rounded animate-pulse" />
-        ) : (
-          value
-        )}
-      </p>
+
+      <div className="w-16 h-16 rounded-2xl bg-[#FAF7F2] border-2 border-[#E1D7C6] group-hover:border-[#5A001A]/30 group-hover:bg-[#5A001A]/[0.02] flex items-center justify-center transition-all duration-300 relative z-10 shadow-sm group-hover:scale-105">
+        <Icon className="w-6 h-6 text-[#5A001A] group-hover:rotate-6 transition-transform duration-300" strokeWidth={1.5} />
+      </div>
     </div>
   );
 }
