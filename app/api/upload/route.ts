@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { writeFile, mkdir } from "fs/promises";
-import { existsSync } from "fs";
-import path from "path";
+import { put } from "@vercel/blob";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
@@ -21,40 +19,17 @@ const ALLOWED_EXTENSIONS = new Set([
   ".webp",
 ]);
 
-// Resolves to <project-root>/public/uploads/gallery at runtime
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "gallery");
-
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
-/**
- * Extracts the file extension from a filename and normalises it to lowercase.
- * Returns an empty string if no extension is found.
- */
 function getExtension(filename: string): string {
-  const ext = path.extname(filename).toLowerCase();
-  return ext;
+  const lastDot = filename.lastIndexOf(".");
+  return lastDot === -1 ? "" : filename.slice(lastDot).toLowerCase();
 }
 
-/**
- * Generates a unique filename using a timestamp + random suffix so that
- * concurrent uploads with the same source name never collide.
- *
- * Format: <timestamp>-<randomHex><ext>
- * Example: 1718123456789-a3f9c2.jpg
- */
-function generateUniqueFilename(ext: string): string {
+function generateUniqueFilename(originalName: string, ext: string): string {
   const timestamp = Date.now();
-  const random = Math.random().toString(16).slice(2, 8); // 6 hex chars
-  return `${timestamp}-${random}${ext}`;
-}
-
-/**
- * Ensures the upload directory exists, creating it (recursively) if needed.
- */
-async function ensureUploadDir(): Promise<void> {
-  if (!existsSync(UPLOAD_DIR)) {
-    await mkdir(UPLOAD_DIR, { recursive: true });
-  }
+  const random = Math.random().toString(16).slice(2, 8);
+  return `gallery/${timestamp}-${random}${ext}`;
 }
 
 // ── Route Handler ─────────────────────────────────────────────────────────────
@@ -126,24 +101,17 @@ export async function POST(request: Request): Promise<NextResponse> {
       );
     }
 
-    // ── 6. Read file bytes ───────────────────────────────────────────────────
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    // ── 6. Upload to Vercel Blob ──────────────────────────────────────────────
+    const filename = generateUniqueFilename(file.name, ext);
 
-    // ── 7. Ensure upload directory exists ────────────────────────────────────
-    await ensureUploadDir();
+    const blob = await put(filename, file, {
+      access: "public",
+      addRandomSuffix: false,
+    });
 
-    // ── 8. Write file to disk ────────────────────────────────────────────────
-    const filename = generateUniqueFilename(ext);
-    const filePath = path.join(UPLOAD_DIR, filename);
-
-    await writeFile(filePath, buffer);
-
-    // ── 9. Return public URL ─────────────────────────────────────────────────
-    const imageUrl = `/uploads/gallery/${filename}`;
-
+    // ── 7. Return public URL ──────────────────────────────────────────────────
     return NextResponse.json(
-      { success: true, imageUrl },
+      { success: true, imageUrl: blob.url },
       { status: 201 }
     );
   } catch (error) {
