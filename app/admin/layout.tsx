@@ -43,20 +43,9 @@ const NAV_ITEMS: NavItem[] = [
 // then hard-navigates to login so the browser drops all in-memory state.
 // ============================================================================
 
-async function handleLogout() {
-  try {
-    const res = await fetch("/api/admin/logout", { method: "POST" });
-    const data = await res.json();
-    if (data.success) {
-      window.location.href = "/admin/login";
-    } else {
-      alert("Logout failed. Please try again.");
-    }
-  } catch {
-    alert("Something went wrong during logout.");
-  }
+function handleLogout() {
+  window.location.href = "/";
 }
-
 // ============================================================================
 // Sidebar Nav Item
 // ============================================================================

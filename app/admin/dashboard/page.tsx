@@ -2,196 +2,204 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  Inbox,
+  Calculator,
+  Images,
+  BadgeDollarSign,
+  Settings,
+  Globe,
+  Users,
+  ImageIcon,
+  FileText,
+} from "lucide-react";
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+
+interface Lead {
+  id: number;
+  name: string;
+  phone: string;
+  message?: string;
+}
+
+interface DashboardStats {
+  totalLeads: number;
+  totalGallery: number;
+  totalEstimator: number;
+  recentLeads: Lead[];
+}
+
+// ── Quick action config ──────────────────────────────────────────────────────
+
+const QUICK_ACTIONS = [
+  { label: "Lead Management", desc: "View contact leads", href: "/admin/leads", icon: Inbox },
+  { label: "Estimator Leads", desc: "View quote requests", href: "/admin/estimator-leads", icon: Calculator },
+  { label: "Gallery", desc: "Manage images", href: "/admin/gallery", icon: Images },
+  { label: "Pricing", desc: "Update packages", href: "/admin/pricing", icon: BadgeDollarSign },
+  { label: "Settings", desc: "Website settings", href: "/admin/settings", icon: Settings },
+];
 
 export default function DashboardPage() {
-
-  const [stats, setStats] = useState({
+  const [stats, setStats] = useState<DashboardStats>({
     totalLeads: 0,
     totalGallery: 0,
     totalEstimator: 0,
-    recentLeads: [] as any[],
+    recentLeads: [],
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/dashboard")
       .then((res) => res.json())
       .then((data) => setStats(data))
-      .catch((err) => {
-        console.error("Dashboard fetch error:", err);
-      });
+      .catch((err) => console.error("Dashboard fetch error:", err))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <div className="p-8">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">
-          👨🏻‍💻 Admin Dashboard
-        </h1>
-
-        <div className="flex gap-3">
-          <a
-            href="/"
-            target="_blank"
-            className="bg-green-600 text-white px-4 py-2 rounded-lg"
-          >
-            🌐 Visit Website
-          </a>
-
-           <button
-  onClick={async () => {
-    try {
-      const res = await fetch("/api/admin/logout", {
-        method: "POST",
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        window.location.href = "/admin/login";
-      } else {
-        alert("Logout failed.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong.");
-    }
-  }}
-  className="bg-red-600 text-white px-4 py-2 rounded-lg"
->
-  
-</button>
+    <div>
+      {/* ── Page Header ── */}
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-2xl font-bold text-neutral-800">Dashboard</h1>
+          <p className="text-sm text-neutral-500 mt-1">
+            Overview of your website activity
+          </p>
         </div>
+
+        <a
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-xs font-semibold text-neutral-600 border border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50 px-3.5 py-2 rounded-lg transition-all duration-200"
+        >
+          <Globe className="w-3.5 h-3.5" />
+          Visit Website
+        </a>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="border rounded-lg p-6">
-          <h2 className="text-xl font-semibold">
-            Total Leads
-          </h2>
-
-          <p className="text-3xl font-bold">
-            {stats.totalLeads}
-          </p>
-        </div>
-
-        <div className="border rounded-lg p-6">
-          <h2 className="text-xl font-semibold">
-            Gallery Images
-          </h2>
-
-          <p className="text-3xl font-bold">
-            {stats.totalGallery}
-          </p>
-        </div>
-
-        <div className="border rounded-lg p-6">
-          <h2 className="text-xl font-semibold">
-            Estimator Requests
-          </h2>
-
-          <p className="text-3xl font-bold">
-            {stats.totalEstimator}
-          </p>
-        </div>
+      {/* ── Stat Cards ── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <StatCard
+          icon={Users}
+          label="Total Leads"
+          value={stats.totalLeads}
+          loading={loading}
+        />
+        <StatCard
+          icon={ImageIcon}
+          label="Gallery Images"
+          value={stats.totalGallery}
+          loading={loading}
+        />
+        <StatCard
+          icon={FileText}
+          label="Estimator Requests"
+          value={stats.totalEstimator}
+          loading={loading}
+        />
       </div>
 
-      {/* Quick Actions */}
-<div className="mb-10">
-  <h2 className="text-2xl font-bold mb-4">
-    🚀 Quick Actions
-  </h2>
-
-  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-
-    <Link
-      href="/admin/leads"
-      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
-    >
-      <div className="text-3xl mb-2">📋</div>
-      <h3 className="font-semibold">Lead Management</h3>
-      <p className="text-sm text-gray-500 mt-1">
-        View Contact Leads
-      </p>
-    </Link>
-
-    <Link
-      href="/admin/estimator-leads"
-      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
-    >
-      <div className="text-3xl mb-2">🧮</div>
-      <h3 className="font-semibold">Estimator Leads</h3>
-      <p className="text-sm text-gray-500 mt-1">
-        View Quote Requests
-      </p>
-    </Link>
-
-    <Link
-      href="/admin/gallery"
-      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
-    >
-      <div className="text-3xl mb-2">🖼️</div>
-      <h3 className="font-semibold">Gallery</h3>
-      <p className="text-sm text-gray-500 mt-1">
-        Manage Images
-      </p>
-    </Link>
-
-    <Link
-      href="/admin/pricing"
-      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
-    >
-      <div className="text-3xl mb-2">💰</div>
-      <h3 className="font-semibold">Pricing</h3>
-      <p className="text-sm text-gray-500 mt-1">
-        Update Packages
-      </p>
-    </Link>
-
-    <Link
-      href="/admin/settings"
-      className="border rounded-xl p-5 hover:shadow-lg hover:border-[#5A001A] transition-all text-center"
-    >
-      <div className="text-3xl mb-2">⚙️</div>
-      <h3 className="font-semibold">Settings</h3>
-      <p className="text-sm text-gray-500 mt-1">
-        Website Settings
-      </p>
-    </Link>
-
-  </div>
-</div>
-
-      {/* Recent Leads */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">
-          📋 Recent Leads
+      {/* ── Quick Actions ── */}
+      <div className="mb-10">
+        <h2 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-4">
+          Quick Actions
         </h2>
 
-        <div className="border rounded-lg p-4">
-          {stats.recentLeads.length === 0 ? (
-            <p>No leads found.</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {QUICK_ACTIONS.map((action) => {
+            const Icon = action.icon;
+            return (
+              <Link
+                key={action.href}
+                href={action.href}
+                className="bg-white rounded-2xl border border-neutral-100 p-5 text-center hover:border-[#5A001A]/30 hover:shadow-md transition-all duration-200 group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#5A001A]/5 group-hover:bg-[#5A001A]/10 flex items-center justify-center mx-auto mb-3 transition-colors">
+                  <Icon className="w-5 h-5 text-[#5A001A]" />
+                </div>
+                <h3 className="font-semibold text-sm text-neutral-800">
+                  {action.label}
+                </h3>
+                <p className="text-xs text-neutral-500 mt-1">{action.desc}</p>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Recent Leads ── */}
+      <div>
+        <h2 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-4">
+          Recent Leads
+        </h2>
+
+        <div className="bg-white rounded-2xl border border-neutral-100 overflow-hidden">
+          {loading ? (
+            <div className="text-center py-12 text-neutral-400 text-sm">
+              Loading...
+            </div>
+          ) : stats.recentLeads.length === 0 ? (
+            <div className="text-center py-12 text-neutral-400 text-sm">
+              No leads yet.
+            </div>
           ) : (
-            stats.recentLeads.map((lead: any) => (
+            stats.recentLeads.map((lead, index) => (
               <div
                 key={lead.id}
-                className="border-b py-3"
+                className={[
+                  "px-5 py-4",
+                  index !== stats.recentLeads.length - 1 &&
+                    "border-b border-neutral-50",
+                ].join(" ")}
               >
-                <p className="font-semibold">
+                <p className="font-semibold text-sm text-neutral-800">
                   {lead.name}
                 </p>
-
-                <p>{lead.phone}</p>
-
-                <p className="text-sm text-gray-500">
-                  {lead.message}
-                </p>
+                <p className="text-sm text-neutral-500 mt-0.5">{lead.phone}</p>
+                {lead.message && (
+                  <p className="text-xs text-neutral-400 mt-1">
+                    {lead.message}
+                  </p>
+                )}
               </div>
             ))
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+// ── Stat Card Component ──────────────────────────────────────────────────────
+
+function StatCard({
+  icon: Icon,
+  label,
+  value,
+  loading,
+}: {
+  icon: React.ElementType;
+  label: string;
+  value: number;
+  loading: boolean;
+}) {
+  return (
+    <div className="bg-white rounded-2xl border border-neutral-100 p-6">
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-9 h-9 rounded-lg bg-[#5A001A]/5 flex items-center justify-center">
+          <Icon className="w-4.5 h-4.5 text-[#5A001A]" />
+        </div>
+        <p className="text-sm font-medium text-neutral-500">{label}</p>
+      </div>
+      <p className="text-3xl font-bold text-neutral-800">
+        {loading ? (
+          <span className="inline-block w-12 h-8 bg-neutral-100 rounded animate-pulse" />
+        ) : (
+          value
+        )}
+      </p>
     </div>
   );
 }
