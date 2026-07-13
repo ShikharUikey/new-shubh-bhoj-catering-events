@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import bcrypt from "bcryptjs";
 import { signToken } from "@/lib/auth";
 
@@ -15,9 +15,12 @@ export async function POST(req: Request) {
     }
 
     // Checking against username as per the schema, even though the client sends 'email'
-    const admin = await prisma.admin.findUnique({
-      where: { username: email },
+    const result = await db.execute({
+      sql: "SELECT * FROM Admin WHERE username = ? LIMIT 1",
+      args: [email]
     });
+
+    const admin = result.rows[0];
 
     if (!admin) {
       return NextResponse.json(
@@ -26,7 +29,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const isMatch = await bcrypt.compare(password, admin.password);
+    const isMatch = await bcrypt.compare(password, admin.password as string);
     if (!isMatch) {
       return NextResponse.json(
         { success: false, message: "Invalid credentials" },
@@ -34,7 +37,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const token = await signToken({ username: admin.username });
+    const token = await signToken({ username: admin.username as string });
 
     const response = NextResponse.json({ success: true });
     response.cookies.set("token", token, {
