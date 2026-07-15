@@ -71,10 +71,10 @@ export default function Hero() {
                 Get Royal Quote
               </Link>
               <Link
-                href="/services"
+                href="/gallery"
                 className="border border-white text-white px-8 py-4 rounded-full font-semibold transition duration-300 hover:bg-white hover:text-[#5A001A] hover:-translate-y-1"
               >
-                View Services
+                Explore Gallery
               </Link>
             </div>
 

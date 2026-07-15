@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-[#4B0015] text-white pt-16 pb-8">
@@ -23,10 +25,18 @@ export default function Footer() {
             </h4>
 
             <ul className="space-y-3 text-gray-300">
-              <li>Home</li>
-              <li>About</li>
-              <li>Services</li>
-              <li>Gallery</li>
+              <li>
+                <Link href="/" className="hover:text-white transition-colors duration-200">Home</Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-white transition-colors duration-200">About</Link>
+              </li>
+              <li>
+                <Link href="/services" className="hover:text-white transition-colors duration-200">Services</Link>
+              </li>
+              <li>
+                <Link href="/gallery" className="hover:text-white transition-colors duration-200">Gallery</Link>
+              </li>
             </ul>
           </div>
 

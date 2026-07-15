@@ -47,9 +47,9 @@ export default function LoginPage() {
         </h1>
 
         <input
-          type="email"
-          placeholder="Email"
-          className="w-full border p-2 rounded mb-3"
+          type="text"
+          placeholder="Username / Email"
+          className="w-full border p-2 rounded mb-3 focus:outline-none focus:ring-2 focus:ring-[#5A001A]/20"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
