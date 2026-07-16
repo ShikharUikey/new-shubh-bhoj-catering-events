@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import AboutSection from "./components/AboutSection";
@@ -6,19 +7,28 @@ import WhyChooseUs from "./components/WhyChooseUs";
 import CTASection from "./components/CTASection";
 import GalleryPreview from "./components/GalleryPreview";
 import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
+
+export const metadata: Metadata = {
+  title: "Premium Wedding Caterers in Delhi NCR & Bhopal",
+  description: "Experience the best catering services in Delhi NCR and Bhopal with Shubh Bhoj Catering. Perfect for weddings, corporate events, and parties.",
+};
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <AboutSection />
-      <ServicesPreview />
-      <WhyChooseUs />
-      <CTASection />
-      <GalleryPreview />
-      <Testimonials />
+      <main>
+        <Hero />
+        <AboutSection />
+        <ServicesPreview />
+        <WhyChooseUs />
+        <CTASection />
+        <GalleryPreview />
+        <Testimonials />
+        <FAQ />
+      </main>
       <Footer />
     </>
   );

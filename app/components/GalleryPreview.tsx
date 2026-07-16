@@ -3,19 +3,19 @@ import Image from "next/image";
 const galleryImages = [
   {
     src: "/wedding-events.jpg",
-    alt: "Wedding Event",
+    alt: "Premium Wedding Event Catering Setup in Delhi NCR",
   },
   {
     src: "/premium-catering.jpg",
-    alt: "Premium Catering",
+    alt: "Premium Catering Food Display by Shubh Bhoj",
   },
   {
     src: "/live-food-stations.jpg",
-    alt: "Live Food Station",
+    alt: "Live Food Station for Corporate Events in Delhi",
   },
   {
     src: "/corporate-events.jpg",
-    alt: "Corporate Event",
+    alt: "Corporate Event Catering Services in Delhi NCR",
   },
 ];
 

@@ -56,9 +56,9 @@ export default function Hero() {
 
             {/* Description */}
             <p className="text-gray-100 text-lg leading-relaxed max-w-2xl font-light">
-              From intimate family functions and Vedic sangeets to grand
-              corporate galas and destination weddings, we craft premium
-              catering experiences that blend authentic flavors,
+              From intimate family functions in Bhopal to grand 
+              corporate galas in Delhi NCR, we craft premium 
+              catering experiences that blend authentic flavors, 
               elegant presentation and exceptional hospitality.
             </p>
 
@@ -66,12 +66,14 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4 pt-2">
               <Link
                 href="/estimator"
+                aria-label="Get a Royal Quote for Catering"
                 className="bg-[#D4AF37] text-[#5A001A] px-8 py-4 rounded-full font-semibold transition duration-300 hover:bg-[#cfa74a] hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
               >
                 Get Royal Quote
               </Link>
               <Link
                 href="/gallery"
+                aria-label="Explore our Catering Gallery"
                 className="border border-white text-white px-8 py-4 rounded-full font-semibold transition duration-300 hover:bg-white hover:text-[#5A001A] hover:-translate-y-1"
               >
                 Explore Gallery
@@ -99,7 +101,7 @@ export default function Hero() {
               <div className="relative overflow-hidden rounded-[1.8rem]">
                 <Image
                   src="/Founder.jpg"
-                  alt="Founder"
+                  alt="Sarvesh Kumar - Founder of Shubh Bhoj Catering in Delhi NCR and Bhopal"
                   width={350}
                   height={420}
                   className="w-full object-cover rounded-[1.8rem]"

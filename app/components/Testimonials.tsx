@@ -217,6 +217,7 @@ export default function Testimonials() {
 
                     <button
                       onClick={prevSlide}
+                      aria-label="Previous Testimonial"
                       className="w-14 h-14 rounded-full border border-[#D4AF37] text-[#5A001A] hover:bg-[#D4AF37] hover:text-white transition"
                     >
                       ←
@@ -224,6 +225,7 @@ export default function Testimonials() {
 
                     <button
                       onClick={nextSlide}
+                      aria-label="Next Testimonial"
                       className="w-14 h-14 rounded-full border border-[#D4AF37] text-[#5A001A] hover:bg-[#D4AF37] hover:text-white transition"
                     >
                       →
