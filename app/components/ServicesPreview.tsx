@@ -54,7 +54,7 @@ export default function ServicesPreview() {
             <div className="w-3 h-3 rounded-full bg-[#D4AF37]" />
             <div className="w-16 h-[2px] bg-[#D4AF37]" />
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             <span className="bg-gradient-to-r from-[#4B0014] via-[#7A0024] to-[#C89B3C] bg-clip-text text-transparent">
               Exceptional Catering Solutions
             </span>
@@ -148,7 +148,7 @@ export default function ServicesPreview() {
                 <div className="w-24 h-[3px] bg-[#D4AF37]" />
                 <div className="w-3 h-3 rounded-full bg-[#D4AF37]" />
               </div>
-              <h2 className="text-6xl lg:text-7xl font-bold leading-tight text-white">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight text-white">
                 {selected.title}
               </h2>
               <p className="mt-8 text-xl text-gray-200 leading-9 max-w-2xl">

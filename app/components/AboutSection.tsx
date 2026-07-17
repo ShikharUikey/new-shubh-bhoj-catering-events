@@ -34,7 +34,7 @@ export default function AboutSection() {
 
             {/* Stats */}
 
-            <div className="grid grid-cols-3 gap-4 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
 
               <div className="bg-white rounded-2xl shadow-md p-5 text-center">
 
