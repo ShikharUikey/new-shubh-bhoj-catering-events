@@ -19,8 +19,9 @@ export default function Hero() {
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/50" />
 
-      {/* Luxury Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#5A001A]/40 via-transparent to-[#2b000c]/85" />
+      {/* Luxury Gradient with Warm Color Grading */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#5A001A]/50 via-[#D4AF37]/10 to-[#1a0007]/95 mix-blend-overlay" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#5A001A]/40 via-transparent to-[#2b000c]/90" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-12">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -96,8 +97,8 @@ export default function Hero() {
           </div>
 
           {/* ================= RIGHT CONTENT ================= */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="border-2 border-white rounded-[2.5rem] p-4 text-center max-w-sm bg-black/10 shadow-2xl backdrop-blur-xs">
+          <div className="lg:col-span-5 flex justify-center lg:justify-end z-20">
+            <div className="border-2 border-white/80 rounded-[2.5rem] p-4 text-center max-w-sm bg-black/20 backdrop-blur-md shadow-[0_0_40px_rgba(212,175,55,0.4)] animate-[glowPulse_4s_infinite] transition-all">
               <div className="relative overflow-hidden rounded-[1.8rem]">
                 <Image
                   src="/Founder.jpg"
@@ -139,11 +140,26 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Subtle Floating Particles for Premium Feel */}
-      <div className="absolute top-32 left-28 w-2 h-2 bg-[#D4AF37]/40 rounded-full animate-pulse" />
-      <div className="absolute top-64 left-[40%] w-1.5 h-1.5 bg-[#D4AF37]/35 rounded-full animate-ping" />
-      <div className="absolute top-40 right-44 w-2.5 h-2.5 bg-[#D4AF37]/35 rounded-full animate-pulse" />
-      <div className="absolute bottom-44 right-20 w-1.5 h-1.5 bg-[#D4AF37]/45 rounded-full animate-ping" />
+      {/* Cinematic Foreground Overlay */}
+      <div className="absolute bottom-0 left-0 w-full h-[60vh] pointer-events-none mix-blend-screen opacity-90 z-20">
+        <Image
+          src="/cinematic_foreground.jpg"
+          alt="Cinematic Foreground Elements"
+          fill
+          className="object-cover object-bottom"
+          priority
+        />
+      </div>
+
+      {/* Atmospheric Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+        <div className="absolute top-[80%] left-[10%] w-2 h-2 bg-[#D4AF37]/60 rounded-full shadow-[0_0_10px_#D4AF37] animate-[floatUp_12s_ease-in-out_infinite]" />
+        <div className="absolute top-[90%] left-[25%] w-3 h-3 bg-[#D4AF37]/40 rounded-full shadow-[0_0_15px_#D4AF37] animate-[floatUp_15s_ease-in-out_infinite_2s]" />
+        <div className="absolute top-[75%] left-[45%] w-1.5 h-1.5 bg-[#D4AF37]/80 rounded-full shadow-[0_0_8px_#D4AF37] animate-[floatUp_10s_ease-in-out_infinite_1s]" />
+        <div className="absolute top-[85%] left-[60%] w-2.5 h-2.5 bg-[#F5E6B3]/60 rounded-full shadow-[0_0_12px_#F5E6B3] animate-[floatUp_14s_ease-in-out_infinite_3s]" />
+        <div className="absolute top-[95%] left-[80%] w-2 h-2 bg-[#D4AF37]/50 rounded-full shadow-[0_0_10px_#D4AF37] animate-[floatUp_11s_ease-in-out_infinite_0.5s]" />
+        <div className="absolute top-[70%] left-[90%] w-3 h-3 bg-[#D4AF37]/30 rounded-full shadow-[0_0_15px_#D4AF37] animate-[floatUp_16s_ease-in-out_infinite_4s]" />
+      </div>
 
     </section>
   );
