@@ -14,7 +14,7 @@ export default function Footer() {
             </h3>
 
             <p className="text-gray-300 leading-relaxed">
-              Premium Catering & Event Management services crafted to make every celebration memorable Across Delhi NCR & Bhopal.
+              Premium Catering & Event Management services crafted to make every celebration memorable Across Delhi NCR.
             </p>
           </div>
 
@@ -63,7 +63,7 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-300">
               <li>📞 +91 62631 26954</li>
               <li>✉️ info@shubhbhoj.com</li>
-              <li>📍 Delhi NCR & Bhopal, India</li>
+              <li>📍 Delhi NCR, India</li>
             </ul>
           </div>
 

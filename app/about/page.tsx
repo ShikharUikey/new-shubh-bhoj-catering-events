@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn more about Shubh Bhoj Catering, the premium wedding caterers and event management experts based in Bhopal, MP.",
+  description: "Learn more about Shubh Bhoj Catering, the premium wedding caterers and event management experts based in Delhi NCR.",
 };
 
 export default function AboutPage() {

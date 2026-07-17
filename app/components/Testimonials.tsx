@@ -8,7 +8,7 @@ const testimonials = [
     id: 1,
     name: "Amit Sharma",
     role: "Wedding Ceremony",
-    location: "Bhopal",
+    location: "Delhi",
     image: "/client-1.jpg",
     rating: 5,
     text:

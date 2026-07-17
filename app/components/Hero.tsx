@@ -56,7 +56,7 @@ export default function Hero() {
 
             {/* Description */}
             <p className="text-gray-100 text-lg leading-relaxed max-w-2xl font-light">
-              From intimate family functions in Bhopal to grand 
+              From intimate family functions to grand 
               corporate galas in Delhi NCR, we craft premium 
               catering experiences that blend authentic flavors, 
               elegant presentation and exceptional hospitality.
@@ -103,7 +103,7 @@ export default function Hero() {
               <div className="relative overflow-hidden rounded-[1.8rem]">
                 <Image
                   src="/Founder.jpg"
-                  alt="Sarvesh Kumar - Founder of Shubh Bhoj Catering in Delhi NCR and Bhopal"
+                  alt="Sarvesh Kumar - Founder of Shubh Bhoj Catering in Delhi NCR"
                   width={350}
                   height={420}
                   className="w-full object-cover rounded-[1.8rem]"

@@ -4,14 +4,14 @@ import WhatsAppButton from "./components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: {
-    default: "Shubh Bhoj Catering & Events | Premium Catering Services in Delhi NCR & Bhopal",
+    default: "Shubh Bhoj Catering & Events | Premium Catering Services in Delhi NCR",
     template: "%s | Shubh Bhoj Catering",
   },
   description:
-    "Shubh Bhoj Catering & Events offers premium wedding catering, corporate event management, and outdoor catering services in Delhi NCR and Bhopal, MP. Unforgettable taste and royal hospitality.",
+    "Shubh Bhoj Catering & Events offers premium wedding catering, corporate event management, and outdoor catering services in Delhi NCR. Unforgettable taste and royal hospitality.",
   keywords: [
-    "catering services in delhi",
-    "Catering Services in Bhopal",
+    "Premium Catering Delhi NCR",
+    "Catering Services in Delhi NCR",
     "Wedding Caterers in Delhi NCR",
     "Best Caterers in Delhi",
     "Event Management Delhi",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://www.shubhbhoj.com",
-    title: "Shubh Bhoj Catering & Events | Premium Catering Services in Delhi NCR & Bhopal",
+    title: "Shubh Bhoj Catering & Events | Premium Catering Services in Delhi NCR",
     description:
-      "Premium wedding catering and corporate event management services in Delhi NCR and Bhopal. Unforgettable taste and royal hospitality.",
+      "Premium wedding catering and corporate event management services in Delhi NCR. Unforgettable taste and royal hospitality.",
     siteName: "Shubh Bhoj Catering",
     images: [
       {
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shubh Bhoj Catering & Events | Delhi NCR & Bhopal",
+    title: "Shubh Bhoj Catering & Events | Delhi NCR",
     description:
-      "Premium wedding catering and corporate event management services in Delhi NCR and Bhopal.",
+      "Premium wedding catering and corporate event management services in Delhi NCR.",
     images: ["https://www.shubhbhoj.com/gallery-5.jpg"],
   },
   robots: {
@@ -74,9 +74,9 @@ const jsonLd = {
   address: {
     "@type": "PostalAddress",
     streetAddress: "Delhi NCR",
-    addressLocality: "Bhopal",
-    addressRegion: "MP",
-    postalCode: "462001",
+    addressLocality: "New Delhi",
+    addressRegion: "Delhi",
+    postalCode: "110001",
     addressCountry: "IN",
   },
   geo: {

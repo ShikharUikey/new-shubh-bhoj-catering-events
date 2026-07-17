@@ -4,8 +4,8 @@ import ServicesPreview from "../components/ServicesPreview";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Catering Services in Bhopal",
-  description: "Explore our premium catering services for weddings, corporate events, birthday parties, and outdoor events in Bhopal and NCR.",
+  title: "Catering Services in Delhi NCR",
+  description: "Explore our premium catering services for weddings, corporate events, birthday parties, and outdoor events in Delhi NCR.",
 };
 
 export default function ServicesPage() {

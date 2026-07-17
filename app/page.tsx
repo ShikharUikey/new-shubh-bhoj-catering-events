@@ -11,8 +11,8 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "Premium Wedding Caterers in Delhi NCR & Bhopal",
-  description: "Experience the best catering services in Delhi NCR and Bhopal with Shubh Bhoj Catering. Perfect for weddings, corporate events, and parties.",
+  title: "Premium Wedding Caterers in Delhi NCR",
+  description: "Experience the best catering services in Delhi NCR with Shubh Bhoj Catering. Perfect for weddings, corporate events, and parties.",
 };
 
 export default function Home() {

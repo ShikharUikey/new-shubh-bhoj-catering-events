@@ -2,12 +2,12 @@ import React from "react";
 
 const faqs = [
   {
-    question: "How much does wedding catering cost in Bhopal?",
-    answer: "The cost of wedding catering in Bhopal varies based on the menu, guest count, and service style. At Shubh Bhoj Catering, we offer customizable premium packages to suit your budget while ensuring an unforgettable experience.",
+    question: "How much does wedding catering cost?",
+    answer: "The cost of wedding catering varies based on the menu, guest count, and service style. At Shubh Bhoj Catering, we offer customizable premium packages to suit your budget while ensuring an unforgettable experience.",
   },
   {
-    question: "Do you provide catering outside Bhopal?",
-    answer: "Yes, while we are based in Bhopal, we cater to premium events across Madhya Pradesh and the Delhi NCR region. Contact us to discuss destination wedding catering.",
+    question: "Do you provide catering outside Delhi NCR?",
+    answer: "Yes, while we are based in Delhi NCR, we cater to premium events across the region. Contact us to discuss destination wedding catering.",
   },
   {
     question: "Do you offer vegetarian and diverse menus?",

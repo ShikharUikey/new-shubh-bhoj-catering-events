@@ -364,7 +364,7 @@ const submitEstimator = async () => {
 
                   src="/live-food-stations.jpg"
 
-                  alt="Live Food Counters for Catering in Delhi NCR and Bhopal"
+                  alt="Live Food Counters for Catering in Delhi NCR"
 
                   width={800}
 
