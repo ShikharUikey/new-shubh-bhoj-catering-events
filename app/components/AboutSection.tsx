@@ -12,19 +12,22 @@ export default function AboutSection() {
 
           {/* Right Side */}
 
-          <div>
+          <div className="relative">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#D4AF37]" />
+              <p className="text-[#D4AF37] font-bold tracking-[4px] md:tracking-[6px] uppercase text-xs">
+                About Shubh Bhoj
+              </p>
+              <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#D4AF37]" />
+            </div>
 
-            <p className="text-yellow-600 font-semibold tracking-[4px] uppercase mb-4">
-              About Shubh Bhoj
-            </p>
-
-            <h2 className="text-5xl font-bold text-[#5a001a] mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#5A001A] mb-8 leading-tight">
               Crafting Memorable
               <br />
               Dining Experiences
             </h2>
 
-            <p className="text-gray-700 text-lg leading-relaxed mb-8">
+            <p className="text-[#7A716E] text-lg leading-relaxed mb-12 max-w-3xl mx-auto">
               At Shubh Bhoj, we believe that great food brings people
               together. From intimate family gatherings to grand
               celebrations, our team is dedicated to delivering
@@ -32,55 +35,46 @@ export default function AboutSection() {
               elegant presentation, and warm hospitality.
             </p>
 
-            {/* Stats */}
+            {/* Premium Stats Grid */}
+            <div className="relative bg-white/60 backdrop-blur-md rounded-[2.5rem] p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E1D7C6]/60 mb-12 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-[#E1D7C6]/80">
+                <div className="text-center sm:px-6 py-4 sm:py-0">
+                  <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#5A001A] mb-2">
+                    850+
+                  </h3>
+                  <p className="text-[#C5A880] text-sm font-bold tracking-widest uppercase">
+                    Events Managed
+                  </p>
+                </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+                <div className="text-center sm:px-6 py-4 sm:py-0">
+                  <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#5A001A] mb-2">
+                    40+
+                  </h3>
+                  <p className="text-[#C5A880] text-sm font-bold tracking-widest uppercase">
+                    Custom Menus
+                  </p>
+                </div>
 
-              <div className="bg-white rounded-2xl shadow-md p-5 text-center">
-
-                <h3 className="text-3xl font-bold text-[#5a001a]">
-                  850+
-                </h3>
-
-                <p className="text-gray-600 text-sm mt-2">
-                  Events Managed
-                </p>
-
+                <div className="text-center sm:px-6 py-4 sm:py-0">
+                  <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#5A001A] mb-2">
+                    1000+
+                  </h3>
+                  <p className="text-[#C5A880] text-sm font-bold tracking-widest uppercase">
+                    Happy Guests
+                  </p>
+                </div>
               </div>
-
-              <div className="bg-white rounded-2xl shadow-md p-5 text-center">
-
-                <h3 className="text-3xl font-bold text-[#5a001a]">
-                  40+
-                </h3>
-
-                <p className="text-gray-600 text-sm mt-2">
-                  Custom Menus
-                </p>
-
-              </div>
-
-              <div className="bg-white rounded-2xl shadow-md p-5 text-center">
-
-                <h3 className="text-3xl font-bold text-[#5a001a]">
-                  1000+
-                </h3>
-
-                <p className="text-gray-600 text-sm mt-2">
-                  Happy Guests
-                </p>
-
-              </div>
-
             </div>
 
             <a
-              href="/contact"
-              className="inline-block bg-[#5a001a] text-white px-8 py-4 rounded-full hover:opacity-90 transition"
+              href="/estimator"
+              className="group relative inline-flex items-center justify-center overflow-hidden bg-[#5A001A] text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(90,0,26,0.4)] hover:-translate-y-1"
             >
-              Get Royal Quote
+              <span className="relative z-10">Get Royal Quote</span>
+              {/* Shimmer Effect */}
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
             </a>
-
           </div>
 
         </div>

@@ -59,7 +59,7 @@ function SidebarNavItem({ item, isActive }: { item: NavItem; isActive: boolean }
       className={[
         "flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group select-none",
         isActive
-          ? "bg-white text-[#5A001A] shadow-sm shadow-black/10"
+          ? "bg-white/90 backdrop-blur-sm text-[#5A001A] shadow-md shadow-black/20 border border-white/20"
           : "text-white/70 hover:bg-white/10 hover:text-white",
       ].join(" ")}
       aria-current={isActive ? "page" : undefined}
@@ -100,7 +100,7 @@ function AdminSidebar({ pathname, isOpen, onClose }: { pathname: string, isOpen:
         className={`fixed top-0 left-0 h-screen w-[260px] flex flex-col z-30 transition-transform duration-300 md:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
-        style={{ backgroundColor: "#5A001A" }}
+        style={{ backgroundImage: "linear-gradient(to bottom, #5A001A, #3a0011)" }}
         aria-label="Admin sidebar"
       >
         {/* Brand mark */}

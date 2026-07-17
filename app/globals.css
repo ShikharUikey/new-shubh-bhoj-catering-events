@@ -35,3 +35,9 @@ body {
   background: var(--cream);
   color: #222;
 }
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

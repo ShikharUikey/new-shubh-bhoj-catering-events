@@ -58,7 +58,7 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#2C2523] px-4 py-8 md:px-12 md:py-14 antialiased selection:bg-[#5A001A]/10">
+    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-[#FAF7F2] to-[#EAE0D5] text-[#2C2523] px-4 py-8 md:px-12 md:py-14 antialiased selection:bg-[#5A001A]/10">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* ── Page Header ── */}
@@ -127,7 +127,7 @@ export default function DashboardPage() {
                 <Link
                   key={action.href}
                   href={action.href}
-                  className="bg-white rounded-2xl md:rounded-3xl border-2 border-[#E1D7C6] p-4 md:p-6 lg:p-8 text-center shadow-[0_4px_12px_rgba(44,37,35,0.02)] hover:shadow-[0_20px_40px_-5px_rgba(90,0,26,0.08)] hover:border-[#5A001A]/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center justify-center"
+                  className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl border-2 border-[#E1D7C6] border-t-4 border-t-[#C5A880] p-4 md:p-6 lg:p-8 text-center shadow-[0_4px_12px_rgba(44,37,35,0.02)] hover:shadow-[0_20px_40px_-5px_rgba(90,0,26,0.08)] hover:border-[#5A001A]/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center justify-center"
                 >
                   <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-[#FAF7F2] border-2 border-[#E1D7C6] group-hover:bg-[#5A001A] group-hover:border-[#5A001A] flex items-center justify-center mb-3 md:mb-5 transition-all duration-300">
                     <Icon className="w-4 h-4 md:w-5 md:h-5 text-[#5A001A] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
@@ -183,7 +183,7 @@ export default function DashboardPage() {
                       {lead.message && (
                         <div className="relative bg-white border-2 border-[#E1D7C6] px-6 py-4 rounded-2xl max-w-xl w-full md:text-left shadow-sm group-hover:border-[#C5A880]/40 transition-colors duration-300 border-l-4 border-l-[#C5A880]">
                           <p className="text-xs md:text-sm text-[#4E4340] italic leading-relaxed">
-                            "{lead.message}"
+                            &quot;{lead.message}&quot;
                           </p>
                         </div>
                       )}
@@ -214,7 +214,7 @@ function StatCard({
   loading: boolean;
 }) {
   return (
-    <div className="bg-white rounded-3xl border-2 border-[#E1D7C6] p-8 shadow-[0_4px_12px_rgba(44,37,35,0.01)] hover:shadow-[0_20px_40px_-5px_rgba(90,0,26,0.08)] hover:border-[#5A001A]/40 hover:-translate-y-1 transition-all duration-300 group flex items-center justify-between overflow-hidden relative">
+    <div className="bg-white/80 backdrop-blur-sm rounded-3xl border-2 border-[#E1D7C6] border-l-4 border-l-[#C5A880] p-8 shadow-[0_4px_12px_rgba(44,37,35,0.01)] hover:shadow-[0_20px_40px_-5px_rgba(90,0,26,0.08)] hover:border-[#5A001A]/40 hover:-translate-y-1 transition-all duration-300 group flex items-center justify-between overflow-hidden relative">
       <div className="space-y-3 relative z-10">
         <p className="text-xs font-bold text-[#7A716E] tracking-[0.15em] uppercase">
           {label}

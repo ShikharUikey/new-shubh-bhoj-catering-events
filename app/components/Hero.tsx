@@ -67,16 +67,18 @@ export default function Hero() {
               <Link
                 href="/estimator"
                 aria-label="Get a Royal Quote for Catering"
-                className="bg-[#D4AF37] text-[#5A001A] px-8 py-4 rounded-full font-semibold transition duration-300 hover:bg-[#cfa74a] hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+                className="group relative overflow-hidden bg-[#D4AF37] text-[#5A001A] px-8 py-4 rounded-full font-semibold transition duration-300 hover:bg-[#cfa74a] hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
               >
-                Get Royal Quote
+                <span className="relative z-10">Get Royal Quote</span>
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
               </Link>
               <Link
                 href="/gallery"
                 aria-label="Explore our Catering Gallery"
-                className="border border-white text-white px-8 py-4 rounded-full font-semibold transition duration-300 hover:bg-white hover:text-[#5A001A] hover:-translate-y-1"
+                className="group relative overflow-hidden border border-white text-white px-8 py-4 rounded-full font-semibold transition duration-300 hover:bg-white/10 hover:-translate-y-1"
               >
-                Explore Gallery
+                <span className="relative z-10">Explore Gallery</span>
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
               </Link>
             </div>
 
