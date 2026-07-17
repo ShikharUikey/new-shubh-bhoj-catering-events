@@ -58,7 +58,7 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#2C2523] px-6 py-10 md:px-12 md:py-14 antialiased selection:bg-[#5A001A]/10">
+    <div className="min-h-screen bg-[#FAF7F2] text-[#2C2523] px-4 py-8 md:px-12 md:py-14 antialiased selection:bg-[#5A001A]/10">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* ── Page Header ── */}
@@ -120,22 +120,22 @@ export default function DashboardPage() {
             <div className="w-full h-[1px] bg-[#E1D7C6]" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {QUICK_ACTIONS.map((action) => {
               const Icon = action.icon;
               return (
                 <Link
                   key={action.href}
                   href={action.href}
-                  className="bg-white rounded-3xl border-2 border-[#E1D7C6] p-8 text-center shadow-[0_4px_12px_rgba(44,37,35,0.02)] hover:shadow-[0_20px_40px_-5px_rgba(90,0,26,0.08)] hover:border-[#5A001A]/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center justify-center"
+                  className="bg-white rounded-2xl md:rounded-3xl border-2 border-[#E1D7C6] p-4 md:p-6 lg:p-8 text-center shadow-[0_4px_12px_rgba(44,37,35,0.02)] hover:shadow-[0_20px_40px_-5px_rgba(90,0,26,0.08)] hover:border-[#5A001A]/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center justify-center"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#FAF7F2] border-2 border-[#E1D7C6] group-hover:bg-[#5A001A] group-hover:border-[#5A001A] flex items-center justify-center mb-5 transition-all duration-300">
-                    <Icon className="w-5 h-5 text-[#5A001A] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                  <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-[#FAF7F2] border-2 border-[#E1D7C6] group-hover:bg-[#5A001A] group-hover:border-[#5A001A] flex items-center justify-center mb-3 md:mb-5 transition-all duration-300">
+                    <Icon className="w-4 h-4 md:w-5 md:h-5 text-[#5A001A] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                   </div>
-                  <h3 className="font-bold text-sm md:text-base text-[#2C2523] tracking-tight group-hover:text-[#5A001A] transition-colors duration-300">
+                  <h3 className="font-bold text-xs md:text-sm lg:text-base text-[#2C2523] tracking-tight group-hover:text-[#5A001A] transition-colors duration-300 leading-tight">
                     {action.label}
                   </h3>
-                  <p className="text-xs text-[#7A716E] mt-1.5 font-medium leading-relaxed max-w-[160px]">
+                  <p className="hidden md:block text-xs text-[#7A716E] mt-1.5 font-medium leading-relaxed max-w-[160px]">
                     {action.desc}
                   </p>
                 </Link>
@@ -219,17 +219,17 @@ function StatCard({
         <p className="text-xs font-bold text-[#7A716E] tracking-[0.15em] uppercase">
           {label}
         </p>
-        <div className="text-5xl md:text-6xl font-normal text-[#2C2523] tracking-tight font-serif">
+        <div className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#2C2523] tracking-tight font-serif">
           {loading ? (
-            <span className="inline-block w-20 h-12 bg-[#FAF7F2] rounded-xl animate-pulse border border-[#E1D7C6]" />
+            <span className="inline-block w-16 h-10 md:w-20 md:h-12 bg-[#FAF7F2] rounded-xl animate-pulse border border-[#E1D7C6]" />
           ) : (
             value.toLocaleString()
           )}
         </div>
       </div>
 
-      <div className="w-16 h-16 rounded-2xl bg-[#FAF7F2] border-2 border-[#E1D7C6] group-hover:border-[#5A001A]/30 group-hover:bg-[#5A001A]/[0.02] flex items-center justify-center transition-all duration-300 relative z-10 shadow-sm group-hover:scale-105">
-        <Icon className="w-6 h-6 text-[#5A001A] group-hover:rotate-6 transition-transform duration-300" strokeWidth={1.5} />
+      <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-[#FAF7F2] border-2 border-[#E1D7C6] group-hover:border-[#5A001A]/30 group-hover:bg-[#5A001A]/[0.02] flex items-center justify-center transition-all duration-300 relative z-10 shadow-sm group-hover:scale-105">
+        <Icon className="w-5 h-5 md:w-6 md:h-6 text-[#5A001A] group-hover:rotate-6 transition-transform duration-300" strokeWidth={1.5} />
       </div>
     </div>
   );
