@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const galleryImages = [
   {
@@ -89,9 +90,12 @@ export default function GalleryPreview() {
 
         {/* Button */}
         <div className="text-center mt-12">
-          <button className="bg-[#6B001F] text-white px-8 py-4 rounded-full font-medium hover:bg-[#520018] transition">
+          <Link 
+            href="/gallery"
+            className="inline-block bg-[#6B001F] text-white px-8 py-4 rounded-full font-medium hover:bg-[#520018] transition"
+          >
             View Full Gallery
-          </button>
+          </Link>
         </div>
 
       </div>
