@@ -15,6 +15,11 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!name || !phone || !email || !eventType || !guests || !eventDate) {
+      alert("Please fill in all the required details (Name, Phone, Email, Event Type, Guests, Date).");
+      return;
+    }
+
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
@@ -132,6 +137,7 @@ export default function ContactSection() {
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
 
               <input
@@ -140,6 +146,7 @@ export default function ContactSection() {
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                required
               />
 
               <input
@@ -148,12 +155,14 @@ export default function ContactSection() {
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
 
               <select
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
                 value={eventType}
                 onChange={(e) => setEventType(e.target.value)}
+                required
               >
                 <option value="">Select Event Type</option>
                 <option>Wedding</option>
@@ -170,6 +179,7 @@ export default function ContactSection() {
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
+                required
               />
 
               <textarea
@@ -185,6 +195,7 @@ export default function ContactSection() {
                 className="w-full border border-gray-300 rounded-xl px-4 py-3"
                 value={eventDate}
                 onChange={(e) => setEventDate(e.target.value)}
+                required
               />
 
               <textarea
